@@ -24,7 +24,7 @@ public class TransferUtility {
 	    Channel channel = null;
 	    ChannelSftp sftpChannel = null;
 	    try {
-	        session = jsch.getSession(Settings.getUsername(), "lafortu.net", 22);
+	        session = jsch.getSession(Settings.getUsername(), Settings.getServerHostname(), 22);
 	        session.setConfig("StrictHostKeyChecking", "no");
 	        session.setPassword(Settings.getPassword());
 	        session.connect();
@@ -55,7 +55,7 @@ public class TransferUtility {
 	    Channel channel = null;
 	    ChannelSftp sftpChannel = null;
 	    try {
-	        session = jsch.getSession(Settings.getUsername(), "lafortu.net", 22);
+	        session = jsch.getSession(Settings.getUsername(), Settings.getServerHostname(), 22);
 	        session.setConfig("StrictHostKeyChecking", "no");
 	        session.setPassword(Settings.getPassword());
 	        session.connect();

@@ -39,7 +39,7 @@ public class Synchronizer {
 					+ URLEncoder.encode(Settings.getPassword(), "UTF-8");
 
 			// Create connection
-			url = new URL("https://lafortu.net/drivux/checkDir.php");
+			url = new URL(Settings.getServerSyncScriptsDir() + "checkDir.php");
 			connection = (HttpsURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Content-Type",
@@ -172,7 +172,7 @@ public class Synchronizer {
 					+ "&operation=" + requestType;
 
 			// Create connection
-			url = new URL("https://lafortu.net/drivux/delete.php");
+			url = new URL(Settings.getServerSyncScriptsDir() + "delete.php");
 			connection = (HttpsURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Content-Type",

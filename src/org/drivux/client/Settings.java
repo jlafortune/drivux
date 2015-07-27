@@ -1,7 +1,11 @@
 package org.drivux.client;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.prefs.Preferences;
 
 /**
@@ -16,6 +20,7 @@ public class Settings {
 	private static Preferences prefs;
 	private static List<String> invalidFileSuffixes = new ArrayList<>();
 	private static List<String> invalidFilePrefixes = new ArrayList<>();
+	private static Properties props = new Properties();
 	
 	static {
 		// Build/load preferences
@@ -31,6 +36,17 @@ public class Settings {
 		
 		invalidFilePrefixes.add("~");
 		invalidFilePrefixes.add(".");
+		
+		try {
+			FileInputStream input = new FileInputStream("drivux.properties");
+			props.load(input);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static String getUsername() {
@@ -67,5 +83,13 @@ public class Settings {
 
 	public static List<String> getInvalidFilePrefixes() {
 		return invalidFilePrefixes;
+	}
+	
+	public static String getServerHostname() {
+		return props.getProperty("serverHostname");
+	}
+	
+	public static String getServerSyncScriptsDir() {
+		return props.getProperty("serverSyncScriptsDirectory");
 	}
 }
